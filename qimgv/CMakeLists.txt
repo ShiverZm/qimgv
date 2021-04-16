@@ -32,7 +32,10 @@ if(APPLE)
 endif()
 
 # LINK STUFF
-target_link_libraries(qimgv PRIVATE Qt6::Core Qt6::Widgets Qt6::Svg Qt6::Core5Compat)
+target_link_libraries(qimgv PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Svg)
+if(QT_VERSION_MAJOR GREATER_EQUAL 6)
+    target_link_libraries(qimgv PRIVATE Qt${QT_VERSION_MAJOR}::Core5Compat)
+endif()
 
 # OPTION DEFINITIONS, LINKING
 if(EXIV2)
